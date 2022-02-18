@@ -12,14 +12,14 @@
 
     <script>
 
-        cep = "87060380"
-
-        const url = `https://viacep.com.br/ws/${cep}/json/`
+        const url = "dados/estados.json"
         fetch(url)
-        .then( (res) => {
-            res.json().then( (data) => {
-                console.log(data)
-            })
+        .then( resp => resp.json())
+        .then( estados => {
+            const itens = estados.reduce(
+                (html, estado) => html + `<li>${estado.nome}</li>`, ""
+            )
+            document.body.insertAdjacentHTML("beforeend", `<ul>${itens}</ul>`)
         })
     </script>
 </body>
